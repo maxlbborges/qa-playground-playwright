@@ -1,11 +1,16 @@
-export class BasePage {
-    readonly url: string
-    readonly title: string
-    readonly description: string
+import { GeneralActions } from "@actions/generalActions"
+import { Page } from "@playwright/test"
 
-    constructor() {
-        this.url = "",
-        this.title = "",
-        this.description = ""
+export abstract class BasePage {
+    abstract readonly path: string
+    readonly actions: GeneralActions
+
+    constructor(private readonly page: Page) {
+        this.actions = new GeneralActions(page)
     }
+
+    async navigate() {
+        await this.page.goto(this.path)
+    }
+
 }
