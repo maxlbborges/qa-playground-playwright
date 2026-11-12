@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "@pages/*": ["./pages/*"],
+      "@actions/*": ["./actions/*"],
+      "@app-types": ["./types/ui.types.ts"]
+    }
+  },
+  "include": [
+    "playwright.config.ts",
+    "tests/**/*.ts",
+    "actions/**/*.ts",
+    "pages/**/*.ts",
+    "types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "playwright-report", "test-results"]
+}
