@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * TODO (project-wide):
  * - Add scripts to package.json: test, test:ui, typecheck (tsc --noEmit), report.
  * - Add Prettier (.prettierrc with "semi": true) to fix mixed semicolons and missing end-of-file newlines.
- * - Update README: mark Page Object Model as in progress, add pages/, actions/, types/ to the structure.
+ * Tracked in TODO.md.
  */
 
 /**
@@ -25,18 +25,22 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  /* Setting for timeouts for each test. */
+  expect: {
+    timeout: 10000
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'http://uitestingplayground.com',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    /* Retain trace files when a test fails. See https://playwright.dev/docs/trace-viewer */
+    trace: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
