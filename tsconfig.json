@@ -12,7 +12,8 @@
     "paths": {
       "@pages/*": ["./pages/*"],
       "@actions/*": ["./actions/*"],
-      "@app-types": ["./types/ui.types.ts"]
+      "@app-types": ["./types/ui.types.ts"],
+      "@fixtures/*": ["./fixtures/*"]
     }
   },
   "include": [
@@ -20,7 +21,8 @@
     "tests/**/*.ts",
     "actions/**/*.ts",
     "pages/**/*.ts",
-    "types/**/*.ts"
+    "types/**/*.ts",
+    "fixtures/**/*.ts"
   ],
   "exclude": ["node_modules", "playwright-report", "test-results"]
 }

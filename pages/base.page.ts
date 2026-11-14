@@ -10,7 +10,7 @@ export abstract class BasePage {
     }
 
     async navigate() {
-        await this.page.goto(this.path)
+        await this.page.goto(this.path, {waitUntil: 'domcontentloaded'})
     }
 
 }
