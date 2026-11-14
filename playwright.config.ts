@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * TODO (project-wide):
  * - Add scripts to package.json: test, test:ui, typecheck (tsc --noEmit), report.
  * - Add Prettier (.prettierrc with "semi": true) to fix mixed semicolons and missing end-of-file newlines.
- * - Update README: mark Page Object Model as in progress, add pages/, actions/, types/ to the structure.
+ * Tracked in TODO.md.
  */
 
 /**

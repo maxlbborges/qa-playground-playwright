@@ -24,9 +24,12 @@ A hands-on playground where I explore Playwright features one experiment at a ti
 | **Runner** | `@playwright/test` + TypeScript |
 | **Browsers** | Chromium · Firefox · WebKit |
 | **Parallelism** | Fully parallel locally, 1 worker on CI |
-| **Retries** | 2 on CI, 0 locally |
-| **Debugging** | Trace captured on first retry |
+| **Target app** | [UI Testing Playground](http://uitestingplayground.com) |
+| **Retries** | 2 on CI, 1 locally |
+| **Assertion timeout** | 10s (`expect.timeout`) |
+| **Debugging** | Trace retained on failure |
 | **Reporting** | Playwright HTML report |
+| **Design** | Page Object Model + custom fixtures |
 
 ## 🚀 Getting started
 
@@ -57,17 +60,40 @@ npx playwright codegen playwright.dev    # record a test by clicking around
 ```
 qa-playground-playwright/
 ├── tests/
-│   └── example.spec.ts     # first specs: title check + navigation flow
-├── playwright.config.ts    # browsers, retries, reporter, trace settings
-├── .env.example            # template for environment variables
+│   └── homePageTest.spec.ts   # data-driven spec: every home page link navigates to its page
+├── pages/
+│   ├── base.page.ts           # abstract BasePage: path + navigate() + shared actions
+│   └── HomePage/
+│       └── home.page.ts       # HomePage object + HomePageLinks enum
+├── actions/
+│   └── generalActions.ts      # reusable click/validate helpers wrapped in test.step
+├── fixtures/
+│   └── homePageFixture.ts     # `homePage` fixture: builds and opens the HomePage
+├── types/
+│   └── ui.types.ts            # shared types (e.g. ARIA Role)
+├── playwright.config.ts       # browsers, retries, timeouts, reporter, trace settings
+├── tsconfig.json              # strict TS + path aliases
+├── TODO.md                    # checklist of open TODOs in the code
+├── .env.example               # template for environment variables
 └── package.json
 ```
+
+### Path aliases
+
+| Alias | Points to |
+|---|---|
+| `@pages/*` | `pages/*` |
+| `@actions/*` | `actions/*` |
+| `@fixtures/*` | `fixtures/*` |
+| `@app-types` | `types/ui.types.ts` |
 
 ## 🗺️ Learning roadmap
 
 - [x] Project scaffold with cross-browser config
 - [x] First specs: page title + role-based navigation
-- [ ] Page Object Model
+- [ ] Page Object Model *(in progress: BasePage, HomePage, GeneralActions)*
+- [x] Custom fixtures (`homePage`)
+- [x] Data-driven tests (one test per home page link)
 - [ ] API testing with `request` fixtures
 - [ ] Auth state reuse (`storageState`)
 - [ ] Visual comparisons (`toHaveScreenshot`)
