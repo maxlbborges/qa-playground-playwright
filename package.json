@@ -4,5 +4,13 @@
     "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report",
+    "test:runFulltests": "npx playwright test --project=chromium --project=firefox --project=webkit",
+    "test:runFulltests:headed": "npx playwright test --project=chromium --project=firefox --project=webkit --headed",
+    "test:runDynamicIdPage": "npx playwright test --project=firefox --ui tests/pages/dynamicIdPage.spec.ts"
+  }
 }

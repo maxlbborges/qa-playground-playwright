@@ -1,4 +1,4 @@
-import { test } from '@fixtures/homePageFixture'
+import { test } from '@fixtures/testingPlaygroundFixtures'
 import { HomePageLinks } from '@pages/HomePage/home.page'
 
 for (const link of Object.values(HomePageLinks)) {
