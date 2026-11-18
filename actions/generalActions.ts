@@ -9,7 +9,7 @@ export class GeneralActions {
     * @param elementName - The name of the element to click
     * @param elementRole - The role of the element to click (Optional)
     */
-    async clickElement({ elementName, elementRole }: { elementName: string, elementRole?: Role }) {
+    public async clickElement({ elementName, elementRole }: { elementName: string, elementRole?: Role }) {
         elementRole
             ? await test.step(`Clicking element with role: ${elementRole} and name: ${elementName}`, async () => {
                 await this.page.getByRole(elementRole, { name: elementName, exact: true }).click()
@@ -26,7 +26,7 @@ export class GeneralActions {
     * @param elementRole - The role of the element to validate (Optional)
     * @param expectedText - The expected text to validate against
     */
-    async validateTextInElement({ elementName, elementRole, expectedText }: { elementName: string, elementRole?: Role, expectedText: string }) {
+    public async validateTextInElement({ elementName, elementRole, expectedText }: { elementName: string, elementRole?: Role, expectedText: string }) {
         elementRole
             ? await test.step(`Validating text in element with role ${elementRole} and name ${elementName}`, async () => {
                 const element = this.page.getByRole(elementRole, { name: elementName, exact: true })

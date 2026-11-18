@@ -9,7 +9,7 @@ export abstract class BasePage {
         this.actions = new GeneralActions(page)
     }
 
-    async navigate() {
+    public async navigate() {
         await this.page.goto(this.path, {waitUntil: 'domcontentloaded'})
     }
 

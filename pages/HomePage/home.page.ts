@@ -36,10 +36,14 @@ export class HomePage extends BasePage {
     path = '/'
 
 
-    async verifyLink(link: HomePageLinks) {
+    public async verifyLink(link: HomePageLinks) {
         const heading = link === HomePageLinks.LOAD_DELAY ? 'Load Delays' : link
-        await this.actions.clickElement({ elementName: link, elementRole: 'link' })
+        await this.openLink(link)
         await this.actions.validateTextInElement({ elementName: heading, elementRole: 'heading', expectedText: heading })
+    }
+
+    public async openLink(link: HomePageLinks) {
+        await this.actions.clickElement({ elementName: link, elementRole: 'link' })
     }
     
 }
