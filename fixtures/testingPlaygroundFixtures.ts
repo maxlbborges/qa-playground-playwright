@@ -1,5 +1,5 @@
 import {test as base} from '@playwright/test'
-import { HomePage } from '@pages/HomePage/home.page'
+import { HomePage, HomePageLinks } from '@pages/HomePage/home.page'
 import { DynamicIDPage } from '@pages/DynamicIDPage/dynamicId.page'
 
 type TestingPlaygroundFixtures = {
@@ -18,7 +18,7 @@ export const test = base.extend<TestingPlaygroundFixtures>({
         const homePage = new HomePage(page)
         const dynamicIDPage = new DynamicIDPage(page)
         await homePage.navigate()
-        await homePage.actions.clickElement({ elementName: 'Dynamic ID', elementRole: 'link' })
+        await homePage.openLink(HomePageLinks.DYNAMIC_ID)
         await use(dynamicIDPage)
     }
 })
